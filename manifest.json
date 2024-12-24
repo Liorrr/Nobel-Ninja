@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "MMM Alternative Finder",
+  "name": "Nobel Ninja",
   "version": "1.0",
-  "description": "Find alternative links for Manga, Manhwa, and Manhua episodes.",
+  "description": "Find alternative links for Manga, Manhwa, and Manhua, Webtones, etc. episodes.",
   "permissions": ["activeTab", "scripting"],
   "host_permissions": ["https://www.googleapis.com/*"],
   "background": {
