@@ -1,6 +1,9 @@
 # Nobel Ninja
 
-**Nobel Ninja** is a Chrome extension to find alternative links for Manga, Manhwa, and Manhua (MMM) content and report bugs easily.
+#### Video Demo:  <URL HERE>
+
+#### Description:
+- **Nobel Ninja** is a Chrome extension to find alternative links for Manga, Manhwa, and Manhua (MMM) content and report bugs easily.
 
 ## Features
 - Detect and save the domain, title, and episode of the current page.
