@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MMM Finder</title>
     <link rel="stylesheet" href="styles.css" />
+    <title>Nobel Ninja</title>
   </head>
   <body>
-    <h1>MMM Finder</h1>
-    <div id="links">
-      <p>No links found. Enable the extension on this domain and reload the page.</p>
+    <h1>Nobel Ninja</h1>
+    <button id="search-button">Search Alternatives</button>
+    <div id="results"></div>
+    <div id="bug-report" style="display: none;">
+      <textarea placeholder="Please describe the bug, we appreciate your help."></textarea>
+      <button id="submit-bug">Submit</button>
     </div>
+    <footer>
+      <p>Visit our <a href="https://github.com/Liorrr/Nobel-Ninja" target="_blank" id="project-link">GitHub</a> for updates!</p>
+    </footer>
   </body>
   <script src="popup.js"></script>
 </html>
