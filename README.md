@@ -25,5 +25,9 @@ git clone https://github.com/username/Nobel-Ninja.git
 ## Contributing
 Contributions are welcome! Feel free to submit issues or pull requests.
 
+## Future Goal:
+- In the future, depending on user support and feedback, we plan to implement Google Custom Search API for enhanced search functionality and better integration. This improvement would provide curated and more accurate results directly within the extension, making the user experience smoother and more seamless.
+- Let us know if there’s anything else to adjust or refine!
+
 ## License
 This project is licensed under the MIT License.
