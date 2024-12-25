@@ -1,11 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <link rel="stylesheet" href="styles.css" />
     <title>Nobel Ninja</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .dynamic-size {
+        max-height: 90vh;
+        max-width: 90vw;
+        overflow: auto;
+      }
+
+      #results {
+        word-wrap: break-word;
+        white-space: normal;
+      }
+
+      #loading-spinner {
+        text-align: center;
+      }
+    </style>
   </head>
-  <body>
+  <body class="dynamic-size">
     <h1>Nobel Ninja</h1>
+    <div id="loading-spinner" style="display: none;">
+      <img src="spinner.gif" alt="Loading..." />
+    </div>
     <button id="search-button">Search Alternatives</button>
     <div id="results"></div>
     <div id="bug-report" style="display: none;">
@@ -15,6 +39,6 @@
     <footer>
       <p>Visit our <a href="https://github.com/Liorrr/Nobel-Ninja" target="_blank" id="project-link">GitHub</a> for updates!</p>
     </footer>
+    <script src="popup.js"></script>
   </body>
-  <script src="popup.js"></script>
 </html>
