@@ -31,8 +31,68 @@ document.getElementById("search-button").addEventListener("click", () => {
   });
 });
 
-function showError(message) {} // TODO
 
-function displayResults(links, currentDomain) {) // TODO
+function showError(message) {
+  const results = document.getElementById("results");
+  results.innerHTML = `<p>${message} <button id='report-bug'>Report</button></p>`;
+  document.getElementById("report-bug").addEventListener("click", () => {
+    document.getElementById("bug-report").style.display = "block";
+    document.getElementById("submit-bug").addEventListener("click", () => {
+      const description = document.querySelector("textarea").value;
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const url = tabs[0].url;
+        chrome.runtime.sendMessage({
+          action: "reportBug",
+          description,
+          url,
+        });
+      });
+    });
+  });
+}
 
-function adjustPopupSize() {) // TODO
+function displayResults(links, currentDomain) {
+  const results = document.getElementById("results");
+
+  // Hide duplicates and filter current domain
+  const uniqueLinks = [];
+  const seenDomains = new Set();
+
+  links.forEach(link => {
+    if (link.domain !== currentDomain && !seenDomains.has(link.domain)) { 
+      seenDomains.add(link.domain);
+      uniqueLinks.push(link);
+    }
+  });
+
+  results.innerHTML = "<ul>" +
+    uniqueLinks.map(
+      (link) => `<li><a href="${link.link}" target="_blank">${sanitizeInput(link.title)}</a></li>`
+    ).join("") +
+    "</ul>";
+
+  adjustPopupSize();
+}
+
+// required because some of the content have EXTREMLY LONG title in english
+function adjustPopupSize() {
+  const results = document.getElementById("results");
+
+  // Adjust width if content is too wide
+  if (results.scrollWidth > document.body.clientWidth) {
+    document.body.style.width = `${results.scrollWidth}px`;
+  }
+
+  // Adjust height if content overflows
+  // TODO - check if height need to be adustable after some tests, the main requeirment for this function is the width
+  if (results.scrollHeight > document.body.clientHeight) {
+    document.body.style.height = `${results.scrollHeight}px`;
+  }
+}
+
+function sanitizeInput(input) {
+  const div = document.createElement("div");
+  div.textContent = input;
+  return div.innerHTML;
+}
+
