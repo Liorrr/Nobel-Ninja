@@ -1,4 +1,3 @@
-// popup.js
 document.getElementById("search-button").addEventListener("click", () => {
   const results = document.getElementById("results");
   const loadingSpinner = document.getElementById("loading-spinner");
