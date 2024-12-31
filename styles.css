@@ -1,1 +1,56 @@
+/* General popup styling */
+.popup-body {
+  font-family: Arial, sans-serif;
+  padding: 10px;
+  max-width: 300px; /* Allow dynamic resizing */
+  overflow: hidden;
+}
 
+.popup-body h1 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.popup-body a {
+  text-decoration: none;
+  color: blue;
+}
+
+.popup-body a:hover {
+  text-decoration: underline;
+}
+
+/* Results container styling */
+#results {
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+/* Loading spinner */
+#loading-spinner {
+  text-align: center;
+}
+
+#loading-spinner .fallback-spinner {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(0, 0, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: blue;
+  animation: spin 1s ease infinite;
+}
+
+/* CSS animation for fallback spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dynamic sizing container */
+.dynamic-size {
+  max-height: 90vh;
+  max-width: 90vw;
+  overflow: auto;
+}
