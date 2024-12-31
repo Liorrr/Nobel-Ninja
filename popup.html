@@ -3,32 +3,11 @@
   <head>
     <link rel="stylesheet" href="styles.css" />
     <title>Nobel Ninja</title>
-    <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-      }
-
-      .dynamic-size {
-        max-height: 90vh;
-        max-width: 90vw;
-        overflow: auto;
-      }
-
-      #results {
-        word-wrap: break-word;
-        white-space: normal;
-      }
-
-      #loading-spinner {
-        text-align: center;
-      }
-    </style>
   </head>
-  <body class="dynamic-size">
+  <body class="popup-body dynamic-size">
     <h1>Nobel Ninja</h1>
     <div id="loading-spinner" style="display: none;">
-      <img src="spinner.gif" alt="Loading..." />
+      <img src="icons/spinner.gif" alt="Loading..." />
     </div>
     <button id="search-button">Search Alternatives</button>
     <div id="results"></div>
@@ -41,4 +20,16 @@
     </footer>
     <script src="popup.js"></script>
   </body>
+  <style>
+    .popup-body {
+      min-width: 300px;
+      min-height: 400px;
+      font-family: Arial, sans-serif;
+    }
+
+    #results {
+      word-wrap: break-word;
+      white-space: normal;
+    }
+  </style>
 </html>
