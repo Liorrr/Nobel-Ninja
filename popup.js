@@ -51,6 +51,25 @@ function displayResults(links, currentDomain) {
     "</ul>";
 }
 
+function showError(message) {
+  const results = document.getElementById("results");
+  results.innerHTML = `<p>${message} <button id='report-bug'>Report</button></p>`;
+  document.getElementById("report-bug").addEventListener("click", () => {
+    document.getElementById("bug-report").style.display = "block";
+    document.getElementById("submit-bug").addEventListener("click", () => {
+      const description = document.querySelector("textarea").value;
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const url = tabs[0].url;
+        chrome.runtime.sendMessage({
+          action: "reportBug",
+          description,
+          url,
+        });
+      });
+    });
+  });
+}
+
 function sanitizeInput(input) {
   const div = document.createElement("div");
   div.textContent = input;
