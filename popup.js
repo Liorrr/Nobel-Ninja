@@ -20,7 +20,7 @@ document.getElementById("search-button").addEventListener("click", () => {
         (res) => {
           loadingSpinner.style.display = "none";
           if (!res || !res.success) {
-            showError("Failed to fetch search results. Please try again later.");
+            showError(res.error || "Failed to fetch search results. Please try again later.");
           } else {
             displayResults(res.links, domain);
           }
@@ -30,26 +30,6 @@ document.getElementById("search-button").addEventListener("click", () => {
   });
 });
 
-
-function showError(message) {
-  const results = document.getElementById("results");
-  results.innerHTML = `<p>${message} <button id='report-bug'>Report</button></p>`;
-  document.getElementById("report-bug").addEventListener("click", () => {
-    document.getElementById("bug-report").style.display = "block";
-    document.getElementById("submit-bug").addEventListener("click", () => {
-      const description = document.querySelector("textarea").value;
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        const url = tabs[0].url;
-        chrome.runtime.sendMessage({
-          action: "reportBug",
-          description,
-          url,
-        });
-      });
-    });
-  });
-}
-
 function displayResults(links, currentDomain) {
   const results = document.getElementById("results");
 
@@ -58,7 +38,7 @@ function displayResults(links, currentDomain) {
   const seenDomains = new Set();
 
   links.forEach(link => {
-    if (link.domain !== currentDomain && !seenDomains.has(link.domain)) { 
+    if (link.domain !== currentDomain && !seenDomains.has(link.domain)) {
       seenDomains.add(link.domain);
       uniqueLinks.push(link);
     }
@@ -69,24 +49,6 @@ function displayResults(links, currentDomain) {
       (link) => `<li><a href="${link.link}" target="_blank">${sanitizeInput(link.title)}</a></li>`
     ).join("") +
     "</ul>";
-
-  adjustPopupSize();
-}
-
-// required because some of the content have EXTREMLY LONG title in english
-function adjustPopupSize() {
-  const results = document.getElementById("results");
-
-  // Adjust width if content is too wide
-  if (results.scrollWidth > document.body.clientWidth) {
-    document.body.style.width = `${results.scrollWidth}px`;
-  }
-
-  // Adjust height if content overflows
-  // TODO - check if height need to be adustable after some tests, the main requeirment for this function is the width
-  if (results.scrollHeight > document.body.clientHeight) {
-    document.body.style.height = `${results.scrollHeight}px`;
-  }
 }
 
 function sanitizeInput(input) {
@@ -94,4 +56,3 @@ function sanitizeInput(input) {
   div.textContent = input;
   return div.innerHTML;
 }
-
