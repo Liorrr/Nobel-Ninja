@@ -31,26 +31,8 @@
   text-align: center;
 }
 
-#loading-spinner .fallback-spinner {
-  display: inline-block;
+#loading-spinner img {
   width: 24px;
   height: 24px;
-  border: 2px solid rgba(0, 0, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: blue;
-  animation: spin 1s ease infinite;
-}
-
-/* CSS animation for fallback spinner */
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Dynamic sizing container */
-.dynamic-size {
-  max-height: 90vh;
-  max-width: 90vw;
-  overflow: auto;
+  display: inline-block;
 }
