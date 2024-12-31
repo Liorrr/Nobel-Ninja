@@ -3,7 +3,7 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     const { title, chapter } = message;
 
     if (!title || !chapter) {
-      sendResponse({ success: false });
+      sendResponse({ success: false, error: "Missing title or chapter information." });
       return;
     }
 
@@ -11,18 +11,29 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
       const query = `${decodeURIComponent(title)} Chapter ${decodeURIComponent(chapter)}`;
       const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
 
-      // Open Google search in a new tab
-      chrome.tabs.create({ url: googleSearchUrl });
+      // Perform an HTTP request to Google Search
+      const response = await fetch(googleSearchUrl);
+      if (!response.ok) {
+        throw new Error("Failed to fetch search results.");
+      }
 
-      sendResponse({ success: true });
+      const html = await response.text();
+
+      // Parse the HTML to extract search results
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+      const links = Array.from(doc.querySelectorAll("a"))
+        .map(anchor => ({
+          title: anchor.textContent,
+          link: anchor.href,
+          domain: new URL(anchor.href).hostname,
+        }))
+        .filter(link => link.title && link.link && link.domain); // Basic validation
+
+      sendResponse({ success: true, links });
     } catch (error) {
       console.error("Error in searchAlternatives:", error);
-      chrome.runtime.sendMessage({
-        action: "reportBug",
-        description: `An error occurred during the search operation: ${error.message}`,
-        url: sender.url || "unknown",
-      });
-      sendResponse({ success: false });
+      sendResponse({ success: false, error: error.message });
     }
   }
 
@@ -39,5 +50,5 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
       console.error("Error in reportBug:", error);
     }
   }
-  return true;
+  return true; // Indicates the listener will respond asynchronously
 });
