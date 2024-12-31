@@ -6,13 +6,13 @@
 - **Nobel Ninja** is a Chrome extension to find alternative links for Manga, Manhwa, and Manhua (MMM) content and report bugs easily.
 
 ## Features
-- Detect and save the domain, title, and episode of the current page.
+- Detect the domain, title, and episode of the current page.
 - Search for alternative links using Google Custom Search API.
 - Report bugs directly from the extension, including the current page's URL.
 
 ## Installation (untill published)
 1. Clone the repository:
-git clone https://github.com/username/Nobel-Ninja.git
+git clone https://github.com/liorrr/Nobel-Ninja.git
 2. Open Chrome and navigate to `chrome://extensions`.
 3. Enable **Developer mode**.
 4. Click **Load unpacked** and select the cloned project folder.
