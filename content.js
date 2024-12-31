@@ -1,4 +1,4 @@
-(() => {
+() => {
   const domain = (() => {
     const hostname = window.location.hostname;
     const parts = hostname.split('.');
@@ -15,8 +15,8 @@
   // Extract title and chapter from URL
   const urlParts = window.location.pathname.split('/');
   let title = urlParts.find(part => part && !part.toLowerCase().includes('chapter') && /^[a-z0-9-]+$/i.test(part)) || ""; // Validate and extract title
-  const chapterMatch = urlParts.find(part => part.match(/chapter[-.](\d+(\.\d+)?)|ch[-.](\d+(\.\d+)?)/i));
-  const chapter = chapterMatch ? chapterMatch.match(/chapter[-.](\d+(\.\d+)?)|ch[-.](\d+(\.\d+)?)/i)[1] : null;
+  const chapterMatch = urlParts.find(part => part.match(/chapter[-.](\d+([-.‌‍\d+]|[-_]‌‍\d+)?)|ch[-.](\d+([-.‌‍\d+]|[-_]‌‍\d+)?)/i));
+  const chapter = chapterMatch ? chapterMatch.match(/chapter[-.](\d+([-.‌‍\d+]|[-_]‌‍\d+)?)|ch[-.](\d+([-.‌‍\d+]|[-_]‌‍\d+)?)/i)[1] : null;
 
   // Fallback for title extraction from meta tags or page content
   if (!title) {
