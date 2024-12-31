@@ -29,4 +29,4 @@
       sendResponse({ domain, title: encodeURIComponent(title), chapter: encodeURIComponent(chapter) });
     }
   });
-})();
+};
