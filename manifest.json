@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "Nobel Ninja",
   "version": "1.0",
-  "description": "Find alternative links for Manga, Manhwa, and Manhua, Web.",
-  "permissions": ["activeTab", "scripting"],
+  "description": "Find alternative links for Manga, Manhwa, Manhua, Web-Novels, etc.",
+  "permissions": ["activeTab", "scripting", "https://www.google.com/*"],
   "background": {
     "service_worker": "background.js"
   },
